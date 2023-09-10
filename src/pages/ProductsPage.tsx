@@ -10,12 +10,13 @@ import {
 import { productsCardInterface } from "../interface/global.interfce";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useDispatch } from "react-redux";
-import { addToCart, getData } from "../redux/CartSlice";
+import { addToCart } from "../redux/CartSlice";
 
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
+  
 
   const addCart=(product: productsCardInterface) => {
     dispatch(addToCart(product))

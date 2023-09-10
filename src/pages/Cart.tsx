@@ -9,40 +9,35 @@ const Cart = () => {
   const { carts } = useSelector((item: any) => item.carts);
   // console.log(carts)
 
-  
-
   return (
     <>
-      <Box>
-        <Typography variant="h4" textAlign={"center"}>
-          Cart Items
-        </Typography>
-        {carts.length === 0 ? (
-          <Box textAlign={"center"}>
-            <Typography textAlign={"center"}>
-              You Havnt added any products to the cart
-            </Typography>
-            <Button
-              variant="contained"
-              href="/"
-              sx={{ alignContent: "center" }}
-            >
-              Go back to shopping
-            </Button>
-          </Box>
-        ) : (
-          carts?.map((item: productsCardInterface) => {
+      <Typography variant="h4" textAlign={"center"}>
+        Cart Items
+      </Typography>
+      {carts.length === 0 ? (
+        <Box textAlign={"center"}>
+          <Typography textAlign={"center"}>
+            You Havnt added any products to the cart
+          </Typography>
+          <Button variant="contained" href="/" sx={{ alignContent: "center" }}>
+            Go back to shopping
+          </Button>
+        </Box>
+      ) : (
+        <Box textAlign={"center"} >
+          {carts?.map((item: productsCardInterface) => {
             return (
               <Paper
                 key={item.id}
+                
                 sx={{
                   width: "60%",
-                  height: "20em",
+                  marginTop:"20px",
                   display: "flex",
                   justifyContent: "space-around",
                 }}
               >
-                <Box height={"18em"}>
+                <Box height={"15em"}>
                   <img src={item.image} alt={item.title} height={"100%"} />
                 </Box>
                 <Box>
@@ -55,19 +50,15 @@ const Cart = () => {
                       dispatch(removeFromCart(item.id));
                     }}
                   >
-                   
                     remove from cart
                   </Button>
                 </Box>
-                <Button onClick={()=> dispatch(clearCart(carts))}>clear cart</Button>
               </Paper>
             );
-          })
-          
-          
-        )}
-        
-      </Box>
+          })}
+          <Button variant="contained" color="error" onClick={()=> dispatch(clearCart(carts))}>Clear Cart</Button>
+        </Box>
+      )}
     </>
   );
 };

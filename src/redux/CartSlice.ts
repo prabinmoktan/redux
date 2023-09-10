@@ -1,14 +1,13 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { productsData } from "../services/axios.service";
-import { useDispatch } from "react-redux";
+import {  createSlice } from "@reduxjs/toolkit";
 import { productsCardInterface } from "../interface/global.interfce";
+// import { productsData } from "../services/axios.service";
+// import { useDispatch } from "react-redux";
+
 
 
 
 const initialState = {
-    carts : localStorage.getItem('carts')? 
-    JSON.parse(localStorage.getItem('carts'))
-    : [],
+    carts :  [],
     // items : productsData,
     totalQuantity : 0,
     totalPrice : 0
@@ -23,18 +22,19 @@ const cartSlice = createSlice ({
     reducers : {
         addToCart(state, action){
             state.carts.push(action.payload)
-            localStorage.setItem("carts", JSON.stringify(state.carts))
+            // localStorage.setItem("carts", JSON.stringify(state.carts))
         },
         removeFromCart(state,action) {
             
             const itemId = action.payload;
-            state.carts = state.carts.filter((item)=> item.id !== itemId)
+            state.carts = state.carts.filter((item : productsCardInterface)=> item.id !== itemId)
+            // localStorage.setItem('carts', JSON.stringify(state.carts));
             
         }, 
         clearCart(state){
-            console.log(state)
+            // console.log(state)
             state.carts = []
-            localStorage.removeItem('carts')
+            // localStorage.removeItem('carts')
 
         }
     }

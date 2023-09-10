@@ -47,7 +47,7 @@ const Navbar = () => {
             }, color:"black" }} 
             />
             {carts.length=== 0 ? (null) : (
-              <Typography variant="subtitle2">{carts.length}</Typography>
+              <Typography variant="subtitle2" >{carts.length}</Typography>
             )}
             </IconButton>
           </Toolbar>

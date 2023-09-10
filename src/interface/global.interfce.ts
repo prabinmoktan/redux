@@ -39,6 +39,7 @@
 // }
 
 export interface productsCardInterface {
+  [x: string]: any;
   category?: string;
   description?: string;
   id?: number;
