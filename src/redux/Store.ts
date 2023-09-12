@@ -2,6 +2,7 @@ import {  combineReducers, configureStore } from "@reduxjs/toolkit";
 import CartSlice from "./CartSlice";
 import {  FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import DataSlice from "./DataSlice";
 
 
 
@@ -11,7 +12,8 @@ const persistConfig = {
     storage
 }
 const reducer = combineReducers({
-    carts: CartSlice
+    carts: CartSlice, 
+    product : DataSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
@@ -24,4 +26,5 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    
 })

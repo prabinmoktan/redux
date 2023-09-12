@@ -1,16 +1,18 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, isFulfilled } from "@reduxjs/toolkit"
 import axios from "axios"
 import { productsCardInterface } from "../interface/global.interfce"
 
 const initialState = {
-    product : []
+    product : [],
+    loading : false,
+    error : ''
     
 
 }
  export const dataFetch = createAsyncThunk('product, dataFetch',
  async() => {
     const response = await axios.get('https://fakestoreapi.com/products')
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
  })
 
@@ -18,18 +20,21 @@ const initialState = {
     name : 'product' ,
     initialState,
     reducers : {},
-    extraReducers : {
-        [dataFetch.pending] : (state) => {
-            state.status = 'loading';
-        },
-        [dataFetch.fulfilled] : ( state, action ) => {
-            state.status = 'resolved';
-            state.item = action.payload
-        },
-        [dataFetch.rejected]:  (state : productsCardInterface, action ) => {
-            state.status = 'failed';
-            state.error = action. payload
-        }
-    }
- })
+    extraReducers : builder  => {
+        builder.addCase(dataFetch.pending, (state)=>{
+            state.loading=true
+        })
+        builder.addCase(dataFetch.fulfilled, (state, action)=>{
+            state.loading=false
+            state.product = action.payload
+            state.error = ''
+     })
+     builder .addCase(dataFetch.rejected,(state)=>{
+        state.loading = false
+        state.product = []
+        
+     })
+    
+ }
+})
  export default dataSlice.reducer

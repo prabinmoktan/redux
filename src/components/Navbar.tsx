@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position="static"
+        // position="static"
         sx={{ backgroundColor: "white", color: "black" }}
       >
         <Container sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -34,7 +34,7 @@ const Navbar = () => {
             <Link underline="hover" color={"black"} fontSize={"19px"} href='/products'>
               Products
             </Link>
-            <Link underline="hover" color={"black"} fontSize={"19px"}>
+            <Link underline="hover" color={"black"} fontSize={"19px"} href='/c'>
              
               Stores
             </Link>
